@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{022053BD-A51F-4E89-92BA-AFDFFFB84F08}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="server\FlixTemperatureServer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="client\vcl\Temperature_VCL_Client.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="client\web\Temperature_Web_Client.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="FlixTemperatureServer">
+        <MSBuild Projects="server\FlixTemperatureServer.dproj"/>
+    </Target>
+    <Target Name="FlixTemperatureServer:Clean">
+        <MSBuild Projects="server\FlixTemperatureServer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FlixTemperatureServer:Make">
+        <MSBuild Projects="server\FlixTemperatureServer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Temperature_VCL_Client">
+        <MSBuild Projects="client\vcl\Temperature_VCL_Client.dproj"/>
+    </Target>
+    <Target Name="Temperature_VCL_Client:Clean">
+        <MSBuild Projects="client\vcl\Temperature_VCL_Client.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Temperature_VCL_Client:Make">
+        <MSBuild Projects="client\vcl\Temperature_VCL_Client.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Temperature_Web_Client">
+        <MSBuild Projects="client\web\Temperature_Web_Client.dproj"/>
+    </Target>
+    <Target Name="Temperature_Web_Client:Clean">
+        <MSBuild Projects="client\web\Temperature_Web_Client.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Temperature_Web_Client:Make">
+        <MSBuild Projects="client\web\Temperature_Web_Client.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="FlixTemperatureServer;Temperature_VCL_Client;Temperature_Web_Client"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="FlixTemperatureServer:Clean;Temperature_VCL_Client:Clean;Temperature_Web_Client:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="FlixTemperatureServer:Make;Temperature_VCL_Client:Make;Temperature_Web_Client:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
